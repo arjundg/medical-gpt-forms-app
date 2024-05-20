@@ -1,0 +1,98 @@
+/* App.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&display=swap");
+
+* {
+ box-sizing: border-box;
+ padding: 0;
+ margin: 0;
+}
+
+:root {
+ --header-height: 3.5rem;
+ --first-color: hsl(28, 88%, 62%);
+ --title-color: hsl(0, 0%, 95%);
+ --text-color: hsl(0, 0%, 75%);
+ --body-color: hsl(0, 0%, 6%);
+ --body-font: "Montserrat", sans-serif;
+ --second-font: "Dancing Script", cursive;
+ --h2-font-size: 1.25rem;
+ --small-font-size: 0.813rem;
+ --font-semi-bold: 600;
+ --z-tooltip: 10;
+ --z-fixed: 100;
+}
+
+body {
+ background-color: var(--body-color);
+ color: var(--text-color);
+ font-family: var(--body-font);
+}
+
+ul {
+ list-style: none;
+}
+
+a {
+ text-decoration: none;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: var(--z-fixed);
+ }
+ 
+ .formLabel {
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding: 20px;
+  display: inline-block;
+}
+
+.page {
+ /*  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px; */
+
+    /* Styles for the overall form container */
+    display: flex; /* Allow stacking elements vertically */
+    flex-direction: column; /* Arrange elements top to bottom */
+    align-items: center; /* Center elements horizontally */
+    margin: 20px auto; /* Add margin for spacing */
+    width: 50%; /* Adjust width as needed */
+    font-size: 0.8em;
+    padding-top: 10%;
+}
+
+/* @media (max-width: 768px) {
+  .page {
+    padding: 10px;
+  }
+} */
+
+
+
+p {  
+  
+  max-width: 100%;  /* Adjust if needed */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-label {
+  /* Styles for each form label */
+  display: flex;
+  margin-bottom: 10px; /* Add spacing between labels */
+  width: 100%; /* Match container width */
+  
+}
+
+.form-label label {
+  /* Styles for label text */
+  width: 120px; /* Adjust label width */
+  margin-right: 10px; /* Add spacing between label and input */
+ 
+}
