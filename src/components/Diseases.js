@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios
 import autosize from 'autosize';
 
-const Medicines = () => {
+const Diseases = () => {
   const [formData, setFormData] = useState({
     name: '',
   });
@@ -24,7 +24,7 @@ const Medicines = () => {
       console.log('API name:', formData.name);
       const response = await axios.get('http://localhost:7071/api/MedicalGPT', {
         method: "post",
-        params: { name: formData.name, query: 'medicines' } // Pass required parameters
+        params: { name: formData.name, query: 'healthconditions' } // Pass required parameters
       });
 
       // Handle the API response (e.g., update state with the data)
@@ -45,15 +45,15 @@ const Medicines = () => {
     <div class="row p-3 bg-dark text-dark bg-opacity-10">
       <div class="body">
         <div class="card-header">
-          <h4>Medicine Lookup</h4>
+          <h4>Disease Lookup</h4>
         </div>
         <p class="mb-3">
-          Use AI to search for medications by name or brand to find information on generic or brand names, uses, dosage, side effects, interactions with other drugs, and prescription requirement.
+          Search for diseases by name or symptom to get detailed information on causes, risk factors, diagnosis, treatment options, and prevention methods.
         </p>
         <div class="card bg-transparent p-2 border border-dark">
           <form onSubmit={handleSubmit} class="mb-3">
             <div class="mb-3">
-              <label class="label label-default">Medicine Brand name or Generic name</label>
+              <label class="label label-default">Name of Disease you want to check</label>
               <input type="text" class="form-control bg-dark p-2 text-white bg-opacity-10" name="name"
                 onChange={handleInputChange} maxLength={30} required />
             </div>
@@ -66,7 +66,6 @@ const Medicines = () => {
             <textarea disabled rows="15" autoResizeEnabled class="form-control bg-dark p-2 text-white bg-opacity-10" name="apiResult" value={formData.apiResult}></textarea>
           </div>
         </div>
-
         <div class="card-footer text-muted">
           This app is intended for informational purposes only and should not be construed as medical advice, diagnosis, or treatment. Always seek the advice of your doctor or other qualified healthcare provider with any questions you may have regarding a medical condition.<p />
           Never disregard professional medical advice or delay in seeking it because of something you have read on this app.
@@ -77,4 +76,4 @@ const Medicines = () => {
   );
 };
 
-export default Medicines;
+export default Diseases;

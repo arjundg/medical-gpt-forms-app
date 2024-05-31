@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios
 import autosize from 'autosize';
 
-const Medicines = () => {
+const Symptoms = () => {
   const [formData, setFormData] = useState({
     name: '',
   });
@@ -24,7 +24,7 @@ const Medicines = () => {
       console.log('API name:', formData.name);
       const response = await axios.get('http://localhost:7071/api/MedicalGPT', {
         method: "post",
-        params: { name: formData.name, query: 'medicines' } // Pass required parameters
+        params: { name: formData.name, query: 'symptoms' } // Pass required parameters
       });
 
       // Handle the API response (e.g., update state with the data)
@@ -45,22 +45,24 @@ const Medicines = () => {
     <div class="row p-3 bg-dark text-dark bg-opacity-10">
       <div class="body">
         <div class="card-header">
-          <h4>Medicine Lookup</h4>
+          <h4>Symptom Checker</h4>
         </div>
         <p class="mb-3">
-          Use AI to search for medications by name or brand to find information on generic or brand names, uses, dosage, side effects, interactions with other drugs, and prescription requirement.
+          Use AI to analyze medical symptoms and suggest potential related diseases.
         </p>
         <div class="card bg-transparent p-2 border border-dark">
           <form onSubmit={handleSubmit} class="mb-3">
             <div class="mb-3">
-              <label class="label label-default">Medicine Brand name or Generic name</label>
+              <label class="label label-default">Provide a brief description of your health symptoms (Ex: fever, cough, and fatigue)</label>
               <input type="text" class="form-control bg-dark p-2 text-white bg-opacity-10" name="name"
-                onChange={handleInputChange} maxLength={30} required />
+                onChange={handleInputChange} maxLength={100} required />
+
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-primary btn-dark">Check</button>
             </div>
           </form>
+
           <div class="mb-3">
             <label class="form-label"></label>
             <textarea disabled rows="15" autoResizeEnabled class="form-control bg-dark p-2 text-white bg-opacity-10" name="apiResult" value={formData.apiResult}></textarea>
@@ -77,4 +79,4 @@ const Medicines = () => {
   );
 };
 
-export default Medicines;
+export default Symptoms;
