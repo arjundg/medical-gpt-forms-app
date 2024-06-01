@@ -22,7 +22,9 @@ const Symptoms = () => {
     try {
       // Make an API call (replace with your actual API endpoint)
       console.log('API name:', formData.name);
-      const response = await axios.get('http://localhost:7071/api/MedicalGPT', {
+      //const url = 'http://localhost:7071/api/MedicalGPT'
+      const url = 'https://medicalgpt.azurewebsites.net/api/medicalgpt?code=UVHCGTPu45GKrRr2BMHLW9AO-HjlKS6ZSehsBvSSgF2ZAzFuCIRpqw%3D%3D'
+      const response = await axios.get(url, {      
         method: "post",
         params: { name: formData.name, query: 'symptoms' } // Pass required parameters
       });
@@ -53,8 +55,8 @@ const Symptoms = () => {
         <div class="card bg-transparent p-2 border border-dark">
           <form onSubmit={handleSubmit} class="mb-3">
             <div class="mb-3">
-              <label class="label label-default">Provide a brief description of your health symptoms (Ex: fever, cough, and fatigue)</label>
-              <input type="text" class="form-control bg-dark p-2 text-white bg-opacity-10" name="name"
+              <label class="label label-default">Provide a brief description of your health symptoms (Ex: fever, cough, and fatigue for an adult)</label>
+              <input type="text" class="form-control bg-dark p-2 text-dark bg-opacity-10" name="name"
                 onChange={handleInputChange} maxLength={100} required />
 
             </div>
@@ -65,7 +67,7 @@ const Symptoms = () => {
 
           <div class="mb-3">
             <label class="form-label"></label>
-            <textarea disabled rows="15" autoResizeEnabled class="form-control bg-dark p-2 text-white bg-opacity-10" name="apiResult" value={formData.apiResult}></textarea>
+            <textarea disabled rows="15" autoResizeEnabled class="form-control bg-dark p-2 text-dark bg-opacity-10" name="apiResult" value={formData.apiResult}></textarea>
           </div>
         </div>
 
