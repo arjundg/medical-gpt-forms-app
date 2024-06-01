@@ -1,15 +1,14 @@
 // src/components/FormPage.js
 
 import React, { useState } from 'react';
-import axios from 'axios'; // Import Axios
+import { handleSubmit } from './FormUtils';
 import autosize from 'autosize';
 
 const Medicines = () => {
   const [formData, setFormData] = useState({
     name: '',
+    query: 'medicines'
   });
-
-  //const [apiResult, setApiResult] = useState(''); // Initialize state for API result
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,29 +16,16 @@ const Medicines = () => {
     autosize(formData.apiResult)
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Make an API call (replace with your actual API endpoint)
-      console.log('API name:', formData.name);
-      //const url = 'http://localhost:7071/api/MedicalGPT'
-      const url = 'https://medicalgpt.azurewebsites.net/api/medicalgpt?code=UVHCGTPu45GKrRr2BMHLW9AO-HjlKS6ZSehsBvSSgF2ZAzFuCIRpqw%3D%3D'
-      const response = await axios.get(url, {      
-        method: "post",
-        params: { name: formData.name, query: 'medicines' } // Pass required parameters
-      });
+  const handleFormSubmit = async (e) => {
+    const apiResult = await handleSubmit(e, formData);  // Use the constant
 
-      // Handle the API response (e.g., update state with the data)
-      console.log('API response:', response.data);
-      //(response.data.message); // Set the API result in state
-      // Reset form fields
+    if (apiResult) {  // Check if there's an error (null)
       setFormData({
         name: formData.name,
-        apiResult: response.data
+        query: formData.query,
+        apiResult: apiResult
       });
-      autosize(formData.apiResult)
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      autosize(formData.apiResult);
     }
   };
 
@@ -53,7 +39,7 @@ const Medicines = () => {
           Use AI to search for medications by name or brand to find information on generic or brand names, uses, dosage, side effects, interactions with other drugs, and prescription requirement.
         </p>
         <div class="card bg-transparent p-2 border border-dark">
-          <form onSubmit={handleSubmit} class="mb-3">
+          <form onSubmit={handleFormSubmit} class="mb-3">
             <div class="mb-3">
               <label class="label label-default">Medicine Brand name or Generic name (Ex: Paracetamol for adults)</label>
               <input type="text" class="form-control bg-dark p-2 text-dark bg-opacity-10" name="name"
