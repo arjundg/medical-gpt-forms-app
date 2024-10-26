@@ -1,0 +1,15 @@
+.App {
+  color: #f8f9fa; /* Light text for dark background */
+}
+
+.bg-dark {
+  background-color: #343a40 !important; /* Dark background */
+}
+
+.bg-secondary {
+  background-color: #495057; /* Secondary background for form */
+}
+
+label {
+  font-weight: bold;
+}
